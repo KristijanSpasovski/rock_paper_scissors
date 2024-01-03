@@ -1,0 +1,44 @@
+body {
+  background-color: #7fffd4;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+}
+
+button {
+  cursor: pointer;
+  background-color: #0000;
+  border: 2px red;
+  border-radius: 5px;
+  width: 300px;
+  height: 340px;
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 18px;
+  transition: background-color .3s;
+  display: inline-block;
+}
+
+#rock-btn {
+  background-image: url("rock.a710eb2c.png");
+  background-position: center;
+  background-size: cover;
+}
+
+#paper-btn {
+  background-image: url("paper.d69ac2fd.png");
+  background-position: center;
+  background-size: cover;
+}
+
+#result {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/*# sourceMappingURL=index.9e4c6fd2.css.map */
