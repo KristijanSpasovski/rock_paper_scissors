@@ -1,5 +1,26 @@
-let playerChoice = prompt();
 let computerChoice = getComputerChoice();
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
+let currentResultElement = document.querySelector("#current-result");
+let playerScoreElement = document.querySelector("#player-score");
+let computerScoreElement = document.querySelector("#computer-score");
+let finalResultElement = document.querySelector("#final-result");
+
+let playerScore = 0;
+let computerScore = 0;
+
+const rockButton = rock.addEventListener("click", function () {
+  playGame("rock", getComputerChoice());
+});
+
+const paperButton = paper.addEventListener("click", function () {
+  playGame("paper", getComputerChoice());
+});
+
+const scissorsButton = scissors.addEventListener("click", function () {
+  playGame("scissors", getComputerChoice());
+});
 
 function getComputerChoice() {
   const gameChoices = ["rock", "paper", "scissors"];
@@ -8,55 +29,47 @@ function getComputerChoice() {
 }
 
 function playGame(playerSelection, computerSelection) {
-  const convertLower = playerSelection.toLowerCase();
-  if (convertLower == "rock" && computerSelection == "rock") {
-    return "It's a tie";
-  } else if (convertLower == "scissors" && computerSelection == "scissors") {
-    return "It's a tie";
-  } else if (convertLower == "paper" && computerSelection == "paper") {
-    return "It's a tie";
-  } else if (convertLower == "rock" && computerSelection == "scissors") {
-    return "You WIN! Rock beats scissors";
-  } else if (convertLower == "scissors" && computerSelection == "paper") {
-    return "You WIN! Scissors beats paper";
-  } else if (convertLower == "paper" && computerSelection == "rock") {
-    return "You WIN! Paper beats rock";
-  } else if (convertLower == "scissors" && computerSelection == "rock") {
-    return "You LOSE! Rock beats scissors";
-  } else if (convertLower == "paper" && computerSelection == "scissors") {
-    return "You LOSE! Scissors beats paper";
-  } else if (convertLower == "rock" && computerSelection == "paper") {
-    return "You LOSE! Paper beats rock";
+  let resultText = `You chose: ${playerSelection}<br>`;
+  resultText += `Computer chose: ${computerSelection}<br>`;
+
+  if (playerSelection === computerSelection) {
+    resultText += "It's a tie!<br>";
+  } else if (
+    (playerSelection === "rock" && computerSelection === "scissors") ||
+    (playerSelection === "scissors" && computerSelection === "paper") ||
+    (playerSelection === "paper" && computerSelection === "rock")
+  ) {
+    resultText += `You WIN! ${playerSelection} beats ${computerSelection}<br>`;
+    playerScore++;
   } else {
-    return "Invalid input!";
+    resultText += `You LOSE! ${computerSelection} beats ${playerSelection}<br>`;
+    computerScore++;
+  }
+
+  // Update the score elements' innerHTML
+  currentResultElement.innerHTML = resultText;
+  playerScoreElement.innerHTML = `Player Score: ${playerScore}`;
+  computerScoreElement.innerHTML = `Computer Score: ${computerScore}`;
+
+  if (playerScore + computerScore === 5) {
+    determineWinner();
   }
 }
 
-function game() {
-  let playerScore = 0;
-  let computerScore = 0;
-  let result;
-
-  // for (let i = 0; i < 5; i++) {
-  //   computerChoice = getComputerChoice();
-  //   console.log(`Game ${i + 1}`);
-  //   result = playGame(playerChoice, computerChoice);
-  //   console.log(result);
-
-  //   if (result.includes("WIN")) {
-  //     playerScore++;
-  //   } else if (result.includes("LOSE")) {
-  //     computerScore++;
-  //   }
-  // }
-
+function determineWinner() {
+  let resultText = "";
   if (playerScore > computerScore) {
-    console.log("Congrats! You are the winner!");
+    resultText += "<br>Congratulations! You are the overall winner!";
   } else if (playerScore < computerScore) {
-    console.log("Sorry! You lost to the computer..");
+    resultText += "<br>Sorry! You lost to the computer overall.";
   } else {
-    console.log("It's a tie!");
+    resultText += "<br>It's a tie overall!";
   }
-}
 
-game();
+  // Display the final result
+  finalResultElement.innerHTML = resultText;
+
+  // Reset scores
+  playerScore = 0;
+  computerScore = 0;
+}
