@@ -46,7 +46,6 @@ function playGame(playerSelection, computerSelection) {
     computerScore++;
   }
 
-  // Update the score elements' innerHTML
   currentResultElement.innerHTML = resultText;
   playerScoreElement.innerHTML = `Player Score: ${playerScore}`;
   computerScoreElement.innerHTML = `Computer Score: ${computerScore}`;
@@ -66,10 +65,8 @@ function determineWinner() {
     resultText += "<br>It's a tie overall!";
   }
 
-  // Display the final result
   finalResultElement.innerHTML = resultText;
 
-  // Reset scores
   playerScore = 0;
   computerScore = 0;
 }

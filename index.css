@@ -22,8 +22,9 @@ body {
   background-color: #858681;
   border: #000 solid 18px;
   border-radius: 4px;
-  width: 80%; /* Use a percentage for responsiveness */
-  max-width: 800px; /* Add a max-width to prevent it from becoming too wide on larger screens */
+  width: 80%;
+
+  max-width: 800px;
   padding: 20px;
   box-sizing: border-box;
 }
@@ -43,7 +44,7 @@ button {
   transition: background-color 0.3s ease;
   display: inline-block;
   height: 10em;
-  width: 15em; /* Adjust the width as needed */
+  width: 15em;
   background-color: transparent;
   transition: all 0.3s;
 }
@@ -93,4 +94,55 @@ button:hover {
 #computer-score {
   font-size: 18px;
   font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#current-result,
+#final-result {
+  margin-bottom: 30px;
+}
+
+#result-container {
+  margin-top: 40px;
+  opacity: 0;
+  max-height: 100px;
+  overflow: hidden;
+  transition: opacity 0.3s ease;
+}
+
+#result-container.show {
+  opacity: 1;
+  max-height: 200px;
+}
+
+@media only screen and (max-width: 600px) {
+  #game-container {
+    width: 90%;
+    padding: 10px;
+  }
+
+  button {
+    height: 8em;
+    width: 12em;
+  }
+
+  #result {
+    font-size: 16px;
+  }
+
+  #player-score,
+  #computer-score {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  #game-container {
+    width: 70%;
+  }
+
+  button {
+    height: 12em;
+    width: 18em;
+  }
 }
